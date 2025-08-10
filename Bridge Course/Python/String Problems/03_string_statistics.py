@@ -1,0 +1,10 @@
+line = input("Enter a line: ")
+upper = sum(1 for ch in line if ch.isupper())
+lower = sum(1 for ch in line if ch.islower())
+alpha = sum(1 for ch in line if ch.isalpha())
+digits = sum(1 for ch in line if ch.isdigit())
+
+print("Uppercase letters:", upper)
+print("Lowercase letters:", lower)
+print("Alphabets:", alpha)
+print("Digits:", digits)
