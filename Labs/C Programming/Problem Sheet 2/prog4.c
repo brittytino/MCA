@@ -1,27 +1,23 @@
 #include <stdio.h>
 
 int main() {
-    int day, month, year, century, yearInCentury;
-    int result, remainder;
-    char *days[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    int n, d1, d2, d3;
+    printf("Enter a three-digit integer: ");
+    scanf("%d", &n);
 
-    printf("Enter date (DD MM YYYY): ");
-    scanf("%d %d %d", &day, &month, &year);
-
-    century = year / 100;
-    yearInCentury = year % 100;
-
-    result = (century / 4) - (2 * century) - 1;
-    result += (5 * yearInCentury) / 4;
-    result += (26 * (month + 1)) / 10;
-    result += day;
-
-    remainder = result % 7;
-    if (remainder < 0) {
-        remainder += 7;
+    if (n < 100 || n > 999) {
+        printf("Invalid input\n");
+        return 0;
     }
 
-    printf("The day is: %s\n", days[remainder]);
+    d1 = n / 100;
+    d2 = (n / 10) % 10;
+    d3 = n % 10;
+
+    if ((d1 + d2 + d3) == (d1 * d2 * d3))
+        printf("The sum of the digits is equal to the product of the digits\n");
+    else
+        printf("The sum of the digits is NOT equal to the product of the digits\n");
 
     return 0;
 }
