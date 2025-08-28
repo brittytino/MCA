@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Overlapping Images with z-index</title>
+  <style>
+    .container {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+    }
+
+    .image1 {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      width: 300px;
+      z-index: 1; /* Background image */
+    }
+
+    .image2 {
+      position: absolute;
+      top: 100px;
+      left: 150px;
+      width: 300px;
+      z-index: 2; /* Foreground image, overlaps image1 */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="https://www.exoticcarhacks.com/wp-content/uploads/2024/04/banner-4.jpg" alt="Image 1" class="image1">
+    <img src="https://imageio.forbes.com/specials-images/imageserve/61a51caadcba3e66b006c334/Mclaren-720s-GT3-Testing/960x0.jpg?format=jpg&width=960" alt="Image 2" class="image2">
+  </div>
+
+</body>
+</html>
