@@ -6,3 +6,5 @@ function sE(arr,key){
     return -1;
 }
 console.log(sE([70,80,90,100],90));
+
+//d
