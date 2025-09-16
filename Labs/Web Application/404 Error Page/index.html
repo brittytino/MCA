@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 Error</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url('https://i.gifer.com/5N2g.gif');
+            color: #ffffff;
+            font-family: 'Creepster', cursive, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        img {
+            width: 350px;
+            animation: roll 5s linear infinite;
+            cursor: default;
+            user-select: none;
+        }
+
+        button {
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: transparent;
+            border: 2px solid #ff1100;
+            color: #ff1100;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px #ff1100;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://media.tenor.com/yhAteqmTQ_UAAAAM/ghost-horror.gif" alt="Spooky Ghost" />
+    <h1>You've Entered the Dark Side<span style="color:rgb(255, 255, 255)"> of the Internet</span></h1>
+    <button onclick="alert('Escape attempt failed! The darkness holds you...')">Click Here to Escape</button>
+</body>
+
+</html>
