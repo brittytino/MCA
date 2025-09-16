@@ -4,51 +4,1295 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>404 Error</title>
+    <title>404 - Welcome to Digital Hell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Eater&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        /* ==================== ROOT VARIABLES ==================== */
+        :root {
+            --blood-red: #cc0000;
+            --dark-red: #8b0000;
+            --hell-red: #ff0000;
+            --death-black: #000000;
+            --ghost-white: #ffffff;
+            --shadow-gray: #1a1a1a;
+            --cursed-purple: #4a0e4e;
+            --demon-orange: #ff4500;
         }
 
+        /* ==================== GLOBAL RESET ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* ==================== BODY & BACKGROUND ==================== */
         body {
-            background-image: url('https://i.gifer.com/5N2g.gif');
-            color: #ffffff;
             font-family: 'Creepster', cursive, sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+            background: 
+                linear-gradient(45deg, rgba(0, 0, 0, 0.9) 0%, rgba(51, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.9) 100%),
+                url('https://i.gifer.com/5N2g.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="red" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>') 12 12, crosshair;
+        }
+
+        /* ==================== ATMOSPHERIC OVERLAYS ==================== */
+        .atmosphere-layer-1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at top left, rgba(204, 0, 0, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(139, 0, 0, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at center, rgba(74, 14, 78, 0.2) 0%, transparent 70%);
+            animation: atmosphericPulse 8s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .atmosphere-layer-2 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 0, 0, 0.02) 2px,
+                    rgba(255, 0, 0, 0.02) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 0, 0, 0.01) 2px,
+                    rgba(139, 0, 0, 0.01) 4px
+                );
+            animation: scanlines 0.1s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.8) 100%);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* ==================== MAIN CONTAINER ==================== */
+        .horror-container {
+            position: relative;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            z-index: 10;
+            text-align: center;
         }
 
-        img {
-            width: 350px;
-            animation: roll 5s linear infinite;
-            cursor: default;
+        /* ==================== ERROR CODE STYLING ==================== */
+        .error-section {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .error-code {
+            font-family: 'Nosifer', cursive;
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 900;
+            color: var(--hell-red);
+            text-shadow: 
+                0 0 20px var(--hell-red),
+                0 0 40px var(--hell-red),
+                0 0 60px var(--hell-red),
+                0 0 80px var(--hell-red),
+                0 0 100px var(--hell-red),
+                0 8px 0 var(--dark-red),
+                0 12px 0 #660000,
+                0 16px 0 #4d0000,
+                0 20px 0 #330000,
+                0 24px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.1em;
+            line-height: 0.8;
+            position: relative;
+            transform: perspective(800px) rotateX(25deg);
+            animation: 
+                bloodDrip 3s ease-in-out infinite,
+                textGlow 2s ease-in-out infinite alternate;
             user-select: none;
         }
 
-        button {
-            margin-top: 40px;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            background: transparent;
-            border: 2px solid #ff1100;
-            color: #ff1100;
+        .error-code::before {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgba(255, 0, 255, 0.3);
+            animation: glitchShift 0.3s infinite linear;
+            z-index: -1;
+        }
+
+        .error-code::after {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgba(0, 255, 255, 0.2);
+            animation: glitchShift 0.3s infinite linear reverse;
+            z-index: -2;
+        }
+
+        /* ==================== TITLE AND SUBTITLE ==================== */
+        .horror-title {
+            font-family: 'Butcherman', cursive;
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: var(--ghost-white);
+            text-shadow: 
+                0 0 10px var(--hell-red),
+                0 0 20px var(--hell-red),
+                0 0 30px var(--hell-red),
+                2px 2px 0 var(--death-black),
+                4px 4px 0 var(--shadow-gray);
+            margin: 30px 0;
+            letter-spacing: 0.05em;
+            animation: 
+                typewriterEffect 4s steps(40) 1s both,
+                titleFlicker 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 4px solid var(--hell-red);
+        }
+
+        .subtitle {
+            font-family: 'Eater', cursive;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ff6666;
+            text-shadow: 
+                0 0 5px var(--hell-red),
+                0 0 10px var(--hell-red);
+            margin: 20px 0;
+            animation: fadeInOutSlow 4s ease-in-out infinite;
+            letter-spacing: 0.1em;
+        }
+
+        .warning-message {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--demon-orange);
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--demon-orange);
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: warningPulse 2s ease-in-out infinite;
+            box-shadow: 
+                0 0 20px rgba(255, 69, 0, 0.5),
+                inset 0 0 20px rgba(255, 69, 0, 0.1);
+            position: relative;
+        }
+
+        .warning-message::before {
+            content: '⚠️';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: rotate360 2s linear infinite;
+        }
+
+        .warning-message::after {
+            content: '⚠️';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: rotate360 2s linear infinite reverse;
+        }
+
+        /* ==================== INTERACTIVE BUTTON ==================== */
+        .button-container {
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .horror-button {
+            font-family: 'Creepster', cursive;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: bold;
+            color: var(--ghost-white);
+            background: 
+                linear-gradient(145deg, rgba(139, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(139, 0, 0, 0.9) 100%);
+            border: 3px solid var(--hell-red);
+            border-radius: 15px;
+            padding: 20px 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 
+                0 0 30px rgba(204, 0, 0, 0.6),
+                inset 0 0 30px rgba(255, 0, 0, 0.1),
+                0 10px 20px rgba(0, 0, 0, 0.5);
+            animation: buttonFloat 3s ease-in-out infinite;
+        }
+
+        .horror-button:hover {
+            color: var(--death-black);
+            background: 
+                linear-gradient(145deg, var(--hell-red) 0%, var(--demon-orange) 50%, var(--hell-red) 100%);
+            box-shadow: 
+                0 0 50px rgba(255, 0, 0, 0.9),
+                inset 0 0 50px rgba(255, 255, 255, 0.2),
+                0 15px 30px rgba(0, 0, 0, 0.7);
+            transform: translateY(-8px) scale(1.05);
+            animation: buttonHoverPulse 0.6s ease-in-out infinite alternate;
+        }
+
+        .horror-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .horror-button:hover::before {
+            left: 100%;
+        }
+
+        .horror-button::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 30px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="red" d="M50,10 Q30,30 10,50 Q30,70 50,90 Q70,70 90,50 Q70,30 50,10 Z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translateX(-50%);
+            animation: bloodDrop 2s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        /* ==================== FLOATING HORROR ELEMENTS ==================== */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .blood-drip {
+            position: absolute;
+            width: clamp(80px, 10vw, 140px);
+            height: clamp(120px, 15vw, 200px);
+            opacity: 0.9;
+            animation: 
+                bloodFall 8s ease-in-out infinite,
+                bloodRotate 8s linear infinite;
+            filter: 
+                drop-shadow(0 0 20px var(--hell-red)) 
+                brightness(1.3) 
+                saturate(1.8) 
+                contrast(1.2);
+        }
+
+        .skull-element {
+            position: absolute;
+            width: clamp(60px, 8vw, 120px);
+            height: clamp(60px, 8vw, 120px);
+            opacity: 0.8;
+            animation: 
+                skullHaunt 10s ease-in-out infinite,
+                skullGlow 3s ease-in-out infinite alternate;
+            filter: 
+                drop-shadow(0 0 25px var(--hell-red)) 
+                brightness(0.9) 
+                contrast(1.4) 
+                sepia(0.4) 
+                hue-rotate(340deg);
+        }
+
+        /* Positioning for floating elements */
+        .blood-drip:nth-child(1) { 
+            top: -10%; left: 8%; 
+            animation-delay: 0s; 
+            transform: scale(1.2) rotate(15deg); 
+        }
+        .blood-drip:nth-child(2) { 
+            top: -15%; left: 50%; 
+            animation-delay: 3s; 
+            transform: scale(0.9) rotate(-10deg); 
+        }
+        .blood-drip:nth-child(3) { 
+            top: -5%; right: 12%; 
+            animation-delay: 6s; 
+            transform: scale(1.1) rotate(25deg); 
+        }
+        .skull-element:nth-child(4) { 
+            top: 20%; left: 5%; 
+            animation-delay: 2s; 
+            transform: rotate(20deg); 
+        }
+        .skull-element:nth-child(5) { 
+            top: 70%; right: 8%; 
+            animation-delay: 5s; 
+            transform: rotate(-15deg); 
+        }
+        .skull-element:nth-child(6) { 
+            top: 40%; left: 88%; 
+            animation-delay: 8s; 
+            transform: rotate(10deg); 
+        }
+
+        /* ==================== CORNER EFFECTS ==================== */
+        .corner-effect {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background: 
+                radial-gradient(
+                    circle, 
+                    rgba(255, 0, 0, 0.4) 0%, 
+                    rgba(139, 0, 0, 0.2) 40%, 
+                    transparent 70%
+                );
+            border-radius: 50%;
+            animation: cornerBreathing 6s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        .corner-effect.top-left { 
+            top: -100px; 
+            left: -100px; 
+            animation-delay: 0s; 
+        }
+        .corner-effect.top-right { 
+            top: -100px; 
+            right: -100px; 
+            animation-delay: 1.5s; 
+        }
+        .corner-effect.bottom-left { 
+            bottom: -100px; 
+            left: -100px; 
+            animation-delay: 3s; 
+        }
+        .corner-effect.bottom-right { 
+            bottom: -100px; 
+            right: -100px; 
+            animation-delay: 4.5s; 
+        }
+
+        /* ==================== POPUP MODAL ==================== */
+        .horror-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0) rotate(180deg);
+            background: 
+                linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(51, 0, 0, 0.95) 100%);
+            border: 4px solid var(--hell-red);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 90vw;
+            max-height: 90vh;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 
+                0 0 60px rgba(255, 0, 0, 0.8),
+                inset 0 0 40px rgba(255, 0, 0, 0.1);
+            animation: popupEntrance 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        .popup-text {
+            font-family: 'Eater', cursive;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--hell-red);
+            text-shadow: 0 0 20px var(--hell-red);
+            margin-bottom: 30px;
+            animation: textShake 0.5s ease-in-out infinite;
+        }
+
+        .popup-close {
+            font-family: 'Creepster', cursive;
+            font-size: 1.3rem;
+            background: var(--hell-red);
+            color: var(--ghost-white);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px #ff1100;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .popup-close:hover {
+            background: var(--demon-orange);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes atmosphericPulse {
+            0% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.02); }
+            100% { opacity: 0.8; transform: scale(0.98); }
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0px); opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-4px); opacity: 1; }
+        }
+
+        @keyframes bloodDrip {
+            0%, 100% { 
+                filter: drop-shadow(0 0 20px var(--hell-red)) brightness(1.3); 
+            }
+            50% { 
+                filter: drop-shadow(0 0 40px var(--hell-red)) brightness(1.6); 
+            }
+        }
+
+        @keyframes textGlow {
+            0% { 
+                text-shadow: 
+                    0 0 20px var(--hell-red),
+                    0 0 40px var(--hell-red),
+                    0 0 60px var(--hell-red),
+                    0 0 80px var(--hell-red),
+                    0 0 100px var(--hell-red),
+                    0 8px 0 var(--dark-red),
+                    0 12px 0 #660000,
+                    0 16px 0 #4d0000,
+                    0 20px 0 #330000,
+                    0 24px 10px rgba(0, 0, 0, 0.8);
+            }
+            100% { 
+                text-shadow: 
+                    0 0 30px var(--hell-red),
+                    0 0 60px var(--hell-red),
+                    0 0 90px var(--hell-red),
+                    0 0 120px var(--hell-red),
+                    0 0 150px var(--hell-red),
+                    0 12px 0 var(--dark-red),
+                    0 18px 0 #660000,
+                    0 24px 0 #4d0000,
+                    0 30px 0 #330000,
+                    0 36px 15px rgba(0, 0, 0, 0.9);
+            }
+        }
+
+        @keyframes glitchShift {
+            0% { transform: translate(0, 0); opacity: 0.3; }
+            20% { transform: translate(-2px, 2px); opacity: 0.6; }
+            40% { transform: translate(-2px, -2px); opacity: 0.3; }
+            60% { transform: translate(2px, 2px); opacity: 0.8; }
+            80% { transform: translate(2px, -2px); opacity: 0.4; }
+            100% { transform: translate(0, 0); opacity: 0.3; }
+        }
+
+        @keyframes typewriterEffect {
+            0% { width: 0; border-right-color: var(--hell-red); }
+            50% { border-right-color: transparent; }
+            100% { width: 100%; border-right-color: var(--hell-red); }
+        }
+
+        @keyframes titleFlicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 10px var(--hell-red),
+                    0 0 20px var(--hell-red),
+                    0 0 30px var(--hell-red),
+                    2px 2px 0 var(--death-black),
+                    4px 4px 0 var(--shadow-gray);
+            }
+            20%, 24%, 55% {
+                opacity: 0.4;
+                text-shadow: 0 0 5px var(--hell-red);
+            }
+        }
+
+        @keyframes fadeInOutSlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes warningPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 
+                    0 0 20px rgba(255, 69, 0, 0.5),
+                    inset 0 0 20px rgba(255, 69, 0, 0.1);
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 
+                    0 0 40px rgba(255, 69, 0, 0.8),
+                    inset 0 0 40px rgba(255, 69, 0, 0.2);
+            }
+        }
+
+        @keyframes rotate360 {
+            0% { transform: translateY(-50%) rotate(0deg); }
+            100% { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        @keyframes buttonFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes buttonHoverPulse {
+            0% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.9); }
+            100% { box-shadow: 0 0 70px rgba(255, 0, 0, 1); }
+        }
+
+        @keyframes bloodDrop {
+            0% { transform: translateX(-50%) translateY(0px); opacity: 0.8; }
+            50% { transform: translateX(-50%) translateY(15px); opacity: 0.5; }
+            100% { transform: translateX(-50%) translateY(30px); opacity: 0; }
+        }
+
+        @keyframes bloodFall {
+            0% { 
+                transform: translateY(-200px) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { 
+                transform: translateY(calc(100vh + 100px)) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+
+        @keyframes bloodRotate {
+            0% { filter: drop-shadow(0 0 20px var(--hell-red)) brightness(1.3) hue-rotate(0deg); }
+            50% { filter: drop-shadow(0 0 30px var(--hell-red)) brightness(1.5) hue-rotate(15deg); }
+            100% { filter: drop-shadow(0 0 20px var(--hell-red)) brightness(1.3) hue-rotate(0deg); }
+        }
+
+        @keyframes skullHaunt {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.8; 
+            }
+            25% { 
+                transform: translateY(-40px) rotate(5deg); 
+                opacity: 1; 
+            }
+            50% { 
+                transform: translateY(-20px) rotate(-5deg); 
+                opacity: 0.6; 
+            }
+            75% { 
+                transform: translateY(-60px) rotate(8deg); 
+                opacity: 0.9; 
+            }
+        }
+
+        @keyframes skullGlow {
+            0% { 
+                filter: drop-shadow(0 0 25px var(--hell-red)) brightness(0.9); 
+            }
+            100% { 
+                filter: drop-shadow(0 0 50px var(--hell-red)) brightness(1.2); 
+            }
+        }
+
+        @keyframes cornerBreathing {
+            0% { 
+                opacity: 0.2; 
+                transform: scale(0.8); 
+            }
+            100% { 
+                opacity: 0.6; 
+                transform: scale(1.2); 
+            }
+        }
+
+        @keyframes popupEntrance {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(180deg);
+                opacity: 0;
+            }
+            60% {
+                transform: translate(-50%, -50%) scale(1.1) rotate(-10deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes textShake {
+            0%, 100% { transform: translateX(0px); }
+            10% { transform: translateX(-2px); }
+            20% { transform: translateX(2px); }
+            30% { transform: translateX(-2px); }
+            40% { transform: translateX(2px); }
+            50% { transform: translateX(-1px); }
+            60% { transform: translateX(1px); }
+            70% { transform: translateX(-1px); }
+            80% { transform: translateX(1px); }
+            90% { transform: translateX(-1px); }
+        }
+
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 768px) {
+            .horror-container {
+                padding: 20px;
+            }
+            
+            .error-code {
+                transform: perspective(400px) rotateX(15deg);
+            }
+            
+            .warning-message {
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .horror-button {
+                padding: 15px 30px;
+            }
+            
+            .corner-effect {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .horror-title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .warning-message::before,
+            .warning-message::after {
+                display: none;
+            }
+        }
+
+        /* ==================== ACCESSIBILITY ==================== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ==================== PRINT STYLES ==================== */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .atmosphere-layer-1,
+            .atmosphere-layer-2,
+            .vignette,
+            .floating-elements,
+            .corner-effect {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
-    <img src="https://media.tenor.com/yhAteqmTQ_UAAAAM/ghost-horror.gif" alt="Spooky Ghost" />
-    <h1>You've Entered the Dark Side<span style="color:rgb(255, 255, 255)"> of the Internet</span></h1>
-    <button onclick="alert('Escape attempt failed! The darkness holds you...')">Click Here to Escape</button>
+    <!-- Atmospheric Layers -->
+    <div class="atmosphere-layer-1"></div>
+    <div class="atmosphere-layer-2"></div>
+    <div class="vignette"></div>
+
+    <!-- Corner Effects -->
+    <div class="corner-effect top-left"></div>
+    <div class="corner-effect top-right"></div>
+    <div class="corner-effect bottom-left"></div>
+    <div class="corner-effect bottom-right"></div>
+
+    <!-- Floating Horror Elements -->
+    <div class="floating-elements">
+        <img src="https://www.freeiconspng.com/thumbs/blood-drip/transparent-png-blood-drip-1.png" class="blood-drip" alt="Blood Drip" />
+        <img src="https://www.freeiconspng.com/uploads/blood-png-4.png" class="blood-drip" alt="Blood Drip" />
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/051/337/822/small_2x/realistic-blood-stain-on-transparent-surface-depicting-a-dramatic-scene-of-potential-injury-or-violence-real-blood-stain-on-transparent-background-free-png.png" class="blood-drip" alt="Blood Drip" />
+        
+        <img src="https://png.pngtree.com/png-vector/20230430/ourmid/pngtree-blood-splatter-flow-png-image_6747604.png" class="skull-element" alt="Skull" />
+        <img src="https://www.freeiconspng.com/thumbs/blood-drip/transparent-png-blood-drip-1.png" class="skull-element" alt="Skull" />
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/051/337/822/small_2x/realistic-blood-stain-on-transparent-surface-depicting-a-dramatic-scene-of-potential-injury-or-violence-real-blood-stain-on-transparent-background-free-png.png" class="skull-element" alt="Skull" />
+    </div>
+
+    <!-- Main Horror Container -->
+    <div class="horror-container">
+        <!-- Error Code Section -->
+        <div class="error-section">
+            <div class="error-code">404</div>
+        </div>
+
+        <!-- Title and Messages -->
+        <h1 class="horror-title">Welcome to Digital Hell</h1>
+        <p class="subtitle">Your Soul Has Been Digitally Corrupted</p>
+        
+        <div class="warning-message">
+            ⚠️ FATAL ERROR: Reality.exe has stopped working ⚠️
+        </div>
+
+        <!-- Interactive Button -->
+        <div class="button-container">
+            <button class="horror-button" onclick="summonTheHorror()">
+                Try to Escape... If You Dare
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="ambientHorror" loop preload="auto">
+        <source src="https://www.myinstants.com/media/sounds/jumpscare-65049.mp3" type="audio/mpeg">
+        <source src="https://www.soundjay.com/misc/sounds-869.wav" type="audio/wav">
+    </audio>
+
+    <audio id="screamSound" preload="auto">
+        <source src="https://www.myinstants.com/media/sounds/scream-sound-effect.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- JavaScript Horror Engine -->
+    <script>
+        // ==================== HORROR CONFIGURATION ====================
+        const HORROR_CONFIG = {
+            messages: [
+                'Your digital soul has been consumed by the void...',
+                'ERROR 666: Your existence.exe has encountered a fatal error',
+                'The server demons have claimed your IP address for eternity',
+                'Welcome to the dark web... literally. There is no escape.',
+                'Your cookies have been cursed. Clear your cache? Clear your soul.',
+                'This page was compiled in the fires of digital hell',
+                'The 404 error is just the beginning of your nightmare...',
+                'Your browser history reveals your darkest secrets...',
+                'The internet remembers everything... including your sins',
+                'You have accessed forbidden data. The consequences are eternal.',
+                'Error: user_soul.exe corrupted beyond repair',
+                'The digital realm has rejected your mortal presence'
+            ],
+            
+            glitchWords: [
+                'CORRUPTED', 'INFECTED', 'DESTROYED', 'DELETED', 'CONSUMED', 
+                'TERMINATED', 'OVERWRITTEN', 'FRAGMENTED', 'NULLIFIED', 'POSSESSED'
+            ],
+            
+            audioSettings: {
+                ambientVolume: 0.3,
+                effectVolume: 0.5,
+                fadeInDuration: 2000
+            }
+        };
+
+        // ==================== CORE HORROR CLASS ====================
+        class HorrorEngine {
+            constructor() {
+                this.isAudioEnabled = false;
+                this.horrorLevel = 1;
+                this.activeCurses = [];
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.initializeAudio();
+                this.startBackgroundHorror();
+                this.createFloatingNightmares();
+            }
+
+            setupEventListeners() {
+                // Enable audio on first interaction
+                document.addEventListener('click', this.enableAudio.bind(this), { once: true });
+                
+                // Cursor tracking for horror effects
+                document.addEventListener('mousemove', this.handleCursorEffects.bind(this));
+                
+                // Keyboard horror
+                document.addEventListener('keydown', this.handleKeyboardHorror.bind(this));
+                
+                // Visibility change for jump scares
+                document.addEventListener('visibilitychange', this.handleVisibilityHorror.bind(this));
+                
+                // Prevent right-click for immersion
+                document.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    this.showHorrorMessage('The darkness protects its secrets...');
+                });
+            }
+
+            enableAudio() {
+                if (!this.isAudioEnabled) {
+                    this.isAudioEnabled = true;
+                    const ambientAudio = document.getElementById('ambientHorror');
+                    if (ambientAudio) {
+                        ambientAudio.volume = 0;
+                        ambientAudio.play().then(() => {
+                            this.fadeInAudio(ambientAudio, HORROR_CONFIG.audioSettings.ambientVolume);
+                        }).catch(console.log);
+                    }
+                }
+            }
+
+            fadeInAudio(audioElement, targetVolume) {
+                const fadeStep = targetVolume / (HORROR_CONFIG.audioSettings.fadeInDuration / 50);
+                const fadeTimer = setInterval(() => {
+                    if (audioElement.volume < targetVolume) {
+                        audioElement.volume = Math.min(audioElement.volume + fadeStep, targetVolume);
+                    } else {
+                        clearInterval(fadeTimer);
+                    }
+                }, 50);
+            }
+
+            initializeAudio() {
+                // Preload audio elements
+                const audioElements = document.querySelectorAll('audio');
+                audioElements.forEach(audio => {
+                    audio.addEventListener('canplaythrough', () => {
+                        console.log(`Audio loaded: ${audio.id}`);
+                    });
+                });
+            }
+
+            startBackgroundHorror() {
+                // Random screen glitches
+                setInterval(() => {
+                    if (Math.random() < 0.05) {
+                        this.triggerScreenGlitch();
+                    }
+                }, 3000);
+
+                // Random cursor changes
+                setInterval(() => {
+                    if (Math.random() < 0.1) {
+                        this.changeCursor();
+                    }
+                }, 5000);
+
+                // Increase horror level over time
+                setInterval(() => {
+                    this.horrorLevel = Math.min(this.horrorLevel + 0.1, 5);
+                }, 10000);
+            }
+
+            triggerScreenGlitch() {
+                const glitchEffects = [
+                    () => {
+                        document.body.style.filter = 'hue-rotate(180deg) invert(1)';
+                        setTimeout(() => document.body.style.filter = 'none', 150);
+                    },
+                    () => {
+                        document.body.style.filter = 'contrast(0) brightness(10)';
+                        setTimeout(() => document.body.style.filter = 'none', 100);
+                    },
+                    () => {
+                        document.body.style.transform = 'scale(1.02)';
+                        setTimeout(() => document.body.style.transform = 'none', 200);
+                    },
+                    () => {
+                        const randomWord = HORROR_CONFIG.glitchWords[Math.floor(Math.random() * HORROR_CONFIG.glitchWords.length)];
+                        this.showGlitchText(randomWord);
+                    }
+                ];
+
+                const randomEffect = glitchEffects[Math.floor(Math.random() * glitchEffects.length)];
+                randomEffect();
+            }
+
+            showGlitchText(text) {
+                const glitch = document.createElement('div');
+                glitch.textContent = text;
+                glitch.style.cssText = `
+                    position: fixed;
+                    top: ${Math.random() * 80}vh;
+                    left: ${Math.random() * 80}vw;
+                    font-family: 'Eater', cursive;
+                    font-size: 2rem;
+                    color: #ff0000;
+                    text-shadow: 0 0 20px #ff0000;
+                    z-index: 9999;
+                    pointer-events: none;
+                    animation: glitchDisappear 0.8s ease-out forwards;
+                `;
+                
+                document.body.appendChild(glitch);
+                setTimeout(() => glitch.remove(), 800);
+            }
+
+            changeCursor() {
+                const cursors = [
+                    'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'><text x=\'50%\' y=\'50%\' font-size=\'24\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🔥</text></svg>") 16 16, auto',
+                    'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'><text x=\'50%\' y=\'50%\' font-size=\'24\' text-anchor=\'middle\' dominant-baseline=\'middle\'>💀</text></svg>") 16 16, auto',
+                    'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'><text x=\'50%\' y=\'50%\' font-size=\'24\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🩸</text></svg>") 16 16, auto',
+                    'none'
+                ];
+                
+                document.body.style.cursor = cursors[Math.floor(Math.random() * cursors.length)];
+                
+                setTimeout(() => {
+                    document.body.style.cursor = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\'><path fill=\'red\' d=\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z\'/></svg>") 12 12, crosshair';
+                }, 2000);
+            }
+
+            handleCursorEffects(e) {
+                // Blood trail effect
+                if (Math.random() < 0.1 * this.horrorLevel * 0.2) {
+                    this.createBloodTrail(e.clientX, e.clientY);
+                }
+
+                // Screaming effect on rapid movement
+                if (this.lastMouseX && this.lastMouseY) {
+                    const distance = Math.sqrt(
+                        Math.pow(e.clientX - this.lastMouseX, 2) + 
+                        Math.pow(e.clientY - this.lastMouseY, 2)
+                    );
+                    
+                    if (distance > 100 && Math.random() < 0.05) {
+                        this.playScreamEffect();
+                    }
+                }
+                
+                this.lastMouseX = e.clientX;
+                this.lastMouseY = e.clientY;
+            }
+
+            createBloodTrail(x, y) {
+                const trail = document.createElement('div');
+                trail.style.cssText = `
+                    position: fixed;
+                    left: ${x}px;
+                    top: ${y}px;
+                    width: ${Math.random() * 8 + 3}px;
+                    height: ${Math.random() * 8 + 3}px;
+                    background: radial-gradient(circle, #cc0000 0%, #8b0000 50%, transparent 100%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9998;
+                    animation: bloodTrailFade 2s ease-out forwards;
+                `;
+                
+                document.body.appendChild(trail);
+                setTimeout(() => trail.remove(), 2000);
+            }
+
+            handleKeyboardHorror(e) {
+                const forbiddenKeys = ['F12', 'F5', 'Escape'];
+                
+                if (forbiddenKeys.includes(e.key)) {
+                    e.preventDefault();
+                    this.showHorrorMessage('The darkness prevents your escape...');
+                    this.triggerScreenGlitch();
+                }
+
+                // Konami code for ultimate horror
+                if (!this.keySequence) this.keySequence = [];
+                this.keySequence.push(e.key);
+                
+                if (this.keySequence.length > 10) {
+                    this.keySequence.shift();
+                }
+
+                const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+                if (this.keySequence.join('').includes(konamiCode.join(''))) {
+                    this.activateUltimateHorror();
+                }
+            }
+
+            handleVisibilityHorror() {
+                if (document.hidden) {
+                    document.title = '👹 You cannot escape... 👹';
+                } else {
+                    document.title = '404 - Welcome to Digital Hell';
+                    if (Math.random() < 0.3) {
+                        this.showHorrorMessage('Did you think leaving would save you?');
+                    }
+                }
+            }
+
+            playScreamEffect() {
+                if (this.isAudioEnabled) {
+                    const screamAudio = document.getElementById('screamSound');
+                    if (screamAudio && screamAudio.readyState >= 2) {
+                        screamAudio.volume = HORROR_CONFIG.audioSettings.effectVolume;
+                        screamAudio.currentTime = 0;
+                        screamAudio.play().catch(console.log);
+                    }
+                }
+            }
+
+            createFloatingNightmares() {
+                setInterval(() => {
+                    if (Math.random() < 0.1) {
+                        this.spawnFloatingEye();
+                    }
+                }, 8000);
+
+                setInterval(() => {
+                    if (Math.random() < 0.15) {
+                        this.createShadowFigure();
+                    }
+                }, 12000);
+            }
+
+            spawnFloatingEye() {
+                const eye = document.createElement('div');
+                eye.style.cssText = `
+                    position: fixed;
+                    width: ${20 + Math.random() * 15}px;
+                    height: ${20 + Math.random() * 15}px;
+                    background: radial-gradient(circle at 30% 30%, #ffffff 10%, #ff0000 25%, #000000 50%);
+                    border-radius: 50%;
+                    top: ${Math.random() * 90}vh;
+                    left: ${Math.random() * 90}vw;
+                    z-index: 999;
+                    pointer-events: none;
+                    animation: eyeBlink 3s ease-in-out infinite, eyeFloat 6s ease-in-out infinite;
+                    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+                `;
+                
+                document.body.appendChild(eye);
+                
+                setTimeout(() => eye.remove(), 15000);
+            }
+
+            createShadowFigure() {
+                const shadow = document.createElement('div');
+                shadow.style.cssText = `
+                    position: fixed;
+                    width: 60px;
+                    height: 120px;
+                    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 50%, rgba(0,0,0,0.7) 100%);
+                    top: ${60 + Math.random() * 40}vh;
+                    left: ${Math.random() > 0.5 ? '-70px' : 'calc(100vw + 10px)'}
+                    border-radius: 30px 30px 0 0;
+                    z-index: 998;
+                    pointer-events: none;
+                    animation: shadowWalk 8s linear forwards;
+                    filter: blur(2px);
+                `;
+                
+                document.body.appendChild(shadow);
+                setTimeout(() => shadow.remove(), 8000);
+            }
+
+            activateUltimateHorror() {
+                document.body.style.animation = 'ultimateHorror 5s ease-in-out';
+                this.showHorrorMessage('You have awakened something ancient...');
+                
+                // Create multiple effects simultaneously
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        this.triggerScreenGlitch();
+                        this.spawnFloatingEye();
+                    }, i * 200);
+                }
+            }
+
+            showHorrorMessage(customMessage = null) {
+                const message = customMessage || HORROR_CONFIG.messages[Math.floor(Math.random() * HORROR_CONFIG.messages.length)];
+                
+                const popup = document.createElement('div');
+                popup.className = 'horror-popup';
+                popup.innerHTML = `
+                    <div class="popup-text">${message}</div>
+                    <button class="popup-close" onclick="this.parentElement.remove()">
+                        Close... If You Can
+                    </button>
+                `;
+                
+                document.body.appendChild(popup);
+                
+                // Auto-remove after 8 seconds
+                setTimeout(() => {
+                    if (popup.parentElement) {
+                        popup.remove();
+                    }
+                }, 8000);
+
+                // Play scream effect
+                this.playScreamEffect();
+            }
+        }
+
+        // ==================== MAIN HORROR FUNCTIONS ====================
+        function summonTheHorror() {
+            if (window.horrorEngine) {
+                window.horrorEngine.showHorrorMessage();
+            }
+        }
+
+        // ==================== ADDITIONAL ANIMATIONS ====================
+        const additionalStyles = `
+            @keyframes glitchDisappear {
+                0% { 
+                    opacity: 1; 
+                    transform: scale(1) rotate(0deg); 
+                    filter: hue-rotate(0deg);
+                }
+                50% { 
+                    opacity: 0.8; 
+                    transform: scale(1.2) rotate(180deg); 
+                    filter: hue-rotate(180deg);
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: scale(0.5) rotate(360deg); 
+                    filter: hue-rotate(360deg);
+                }
+            }
+
+            @keyframes bloodTrailFade {
+                0% { 
+                    opacity: 1; 
+                    transform: scale(1);
+                }
+                50% { 
+                    opacity: 0.7; 
+                    transform: scale(1.5);
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: scale(0);
+                }
+            }
+
+            @keyframes eyeBlink {
+                0%, 90% { 
+                    opacity: 1; 
+                    transform: scaleY(1);
+                }
+                93% { 
+                    opacity: 0.1; 
+                    transform: scaleY(0.1);
+                }
+                96% { 
+                    opacity: 1; 
+                    transform: scaleY(1);
+                }
+            }
+
+            @keyframes eyeFloat {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+            }
+
+            @keyframes shadowWalk {
+                0% { 
+                    left: -70px; 
+                    opacity: 0;
+                }
+                10% { 
+                    opacity: 0.8;
+                }
+                90% { 
+                    opacity: 0.8;
+                }
+                100% { 
+                    left: calc(100vw + 10px); 
+                    opacity: 0;
+                }
+            }
+
+            @keyframes ultimateHorror {
+                0% { filter: none; }
+                20% { filter: hue-rotate(180deg) invert(1) contrast(2); }
+                40% { filter: saturate(5) brightness(0.3) contrast(3); }
+                60% { filter: blur(5px) hue-rotate(270deg); }
+                80% { filter: invert(1) contrast(5) brightness(2); }
+                100% { filter: none; }
+            }
+        `;
+
+        // Inject additional styles
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize the horror engine
+            window.horrorEngine = new HorrorEngine();
+
+            // Custom loading sequence
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 2s ease-in';
+                document.body.style.opacity = '1';
+            }, 500);
+
+            console.log('%c🔥 WELCOME TO DIGITAL HELL 🔥', 'color: #ff0000; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #ff0000;');
+            console.log('%cYour browser has been marked by darkness...', 'color: #cc0000; font-size: 16px;');
+        });
+
+        // ==================== ERROR HANDLING ====================
+        window.addEventListener('error', (e) => {
+            console.error('Horror Engine Error:', e);
+            // Even errors become part of the horror
+            if (window.horrorEngine) {
+                window.horrorEngine.showHorrorMessage('Even your errors belong to us now...');
+            }
+        });
+
+        // ==================== PERFORMANCE MONITORING ====================
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                const loadTime = performance.now();
+                if (loadTime > 5000) {
+                    console.log('%cLoading took suspiciously long... The demons are watching...', 'color: #ff0000;');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
