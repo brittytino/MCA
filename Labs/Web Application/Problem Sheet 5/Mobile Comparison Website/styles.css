@@ -1,153 +1,123 @@
-/* style.css */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    color: white;
-    line-height: 1.6;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-header {
-    background: #16213e;
-    padding: 1rem;
-    text-align: center;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px;
+        }
 
-header .logo {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #00bcd4;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.hero {
-    text-align: center;
-    padding: 2rem;
-    background: #1a1a2e;
-}
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
 
-.hero p {
-    font-size: 1.2rem;
-}
+        .hero p {
+            font-size: 1.2rem;
+            color: #64748b;
+            font-weight: 400;
+        }
 
-.comparison {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
-}
+        .comparison {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
 
-.card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-    width: 300px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
+        .phone-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 450px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
 
-.card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-}
+        .phone-card h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1e293b;
+        }
 
-.card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
+        .phone-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-.card ul {
-    list-style: none;
-    padding: 0;
-}
+        .phone-image img {
+            width: 200px;
+            height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
 
-.card li {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-}
+        .specs {
+            list-style: none;
+        }
 
-.highlights {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
-}
+        .specs li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.highlight {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-    width: 250px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
+        .specs li:last-child {
+            border-bottom: none;
+        }
 
-.highlight h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
+        .spec-label {
+            font-weight: 500;
+            color: #475569;
+            width: 120px;
+            flex-shrink: 0;
+        }
 
-.highlight ul {
-    list-style: none;
-    padding: 0;
-}
+        .spec-value {
+            color: #1e293b;
+            text-align: right;
+            flex: 1;
+        }
 
-.highlight li {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-}
+        .price {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #059669;
+            font-size: 1.1rem;
+        }
 
-.pro {
-    background: rgba(0, 255, 0, 0.1);
-}
-
-.con {
-    background: rgba(255, 0, 0, 0.1);
-}
-
-.cta {
-    text-align: center;
-    padding: 2rem;
-    background: #1a1a2e;
-}
-
-.cta h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.cta p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.cta ul {
-    list-style: none;
-    padding: 0;
-}
-
-.cta li {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-footer {
-    text-align: center;
-    padding: 1rem;
-    background: #16213e;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
+        
+        @media (max-width: 1000px) {
+            .comparison {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pros-cons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
