@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me Form</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #e0f7fa, #f3e5f5);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  form {
+    width: 70%;
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+
+  fieldset {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    background: #fafafa;
+  }
+
+  legend {
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 0 8px;
+    color: #444;
+  }
+
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.95em;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: #6200ea;
+    outline: none;
+    box-shadow: 0 0 6px rgba(98, 0, 234, 0.3);
+  }
+
+  /* Submit Button */
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.05em;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6200ea, #8e24aa);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: linear-gradient(135deg, #8e24aa, #6200ea);
+  }
+
+  /* Section Border Colors */
+  #personal { border-color: #4caf50; }
+  #hobbies { border-color: #2196f3; }
+  #residence { border-color: #ff9800; }
+  #about { border-color: #9c27b0; }
+
+  /* Inline checkboxes & radios */
+  .inline-inputs input {
+    margin-right: 6px;
+  }
+  .inline-inputs label {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: normal;
+  }
+</style>
+
+</head>
+<body>
+    <form>
+        <!-- Personal Details -->
+        <fieldset id="personal">
+            <legend>Personal Details</legend>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter first name" required>
+
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter last name" required>
+
+            <label for="mname">Middle Name (Optional):</label>
+            <input type="text" id="mname" name="mname" placeholder="Enter middle name">
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" min="1990-01-01" max="2005-01-01" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required pattern="[0-9]{10}">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter email" required>
+
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*">
+        </fieldset>
+
+        <!-- Hobbies and Skills -->
+        <fieldset id="hobbies">
+            <legend>Hobbies and Skills</legend>
+            <label>Hobbies (Select one or more):</label>
+            <input type="checkbox" id="reading" name="hobbies" value="Reading"> Reading
+            <input type="checkbox" id="sports" name="hobbies" value="Sports"> Sports
+            <input type="checkbox" id="music" name="hobbies" value="Music"> Music
+            <input type="checkbox" id="drawing" name="hobbies" value="Drawing"> Drawing
+
+            <label>Skills (Select one or more):</label>
+            <input type="checkbox" id="coding" name="skills" value="Coding"> Coding
+            <input type="checkbox" id="singing" name="skills" value="Singing"> Singing
+            <input type="checkbox" id="painting" name="skills" value="Painting"> Painting
+            <input type="checkbox" id="dancing" name="skills" value="Dancing"> Dancing
+        </fieldset>
+
+        <!-- Residence Details -->
+        <fieldset id="residence">
+            <legend>Residence Details</legend>
+            <label>Residence Type:</label>
+            <input type="radio" id="dayscholar" name="residence" value="Day Scholar" required> Day Scholar
+            <input type="radio" id="hostel" name="residence" value="Hostel"> Hostel (College Hostel)
+            <input type="radio" id="pg" name="residence" value="PG Hostel"> PG Hostel
+            <input type="radio" id="private" name="residence" value="Private Room"> Private Room
+            <input type="radio" id="rented" name="residence" value="Rented Room/House"> Rented Room/House
+        </fieldset>
+
+        <!-- About Me -->
+        <fieldset id="about">
+            <legend>About Me</legend>
+            <label for="aboutMe">Tell us about yourself:</label>
+            <textarea id="aboutMe" name="aboutMe" rows="5" placeholder="Write a short introduction about yourself..." required></textarea>
+
+            <label for="birthplace">Birth Place:</label>
+            <select id="birthplace" name="birthplace" required>
+                <option value="">Select Birth Place</option>
+                <option value="Agra">Agra</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Ajmer">Ajmer</option>
+                <option value="Amritsar">Amritsar</option>
+            </select>
+        </fieldset>
+
+        <!-- Submit -->
+        <button type="submit" class="submit-btn" title="Click here upon checking the details">Submit</button>
+    </form>
+</body>
+</html>

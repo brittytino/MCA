@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Snake</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">PAC-SNAKE</h1>
+
+        <div class="game-wrapper">
+            <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+            <div class="ui-panel">
+                <div class="ui-item">
+                    <span class="ui-label">SCORE:</span>
+                    <span id="score" class="ui-value">0</span>
+                </div>
+                <div class="ui-item">
+                    <span class="ui-label">HIGH SCORE:</span>
+                    <span id="highScore" class="ui-value">0</span>
+                </div>
+                <div class="ui-item">
+                    <span class="ui-label">LIVES:</span>
+                    <div id="lives" class="lives-container"></div>
+                </div>
+                <div class="ui-item">
+                    <span class="ui-label">POWER UP:</span>
+                    <span id="powerUpTimerDisplay" class="ui-value">--</span>
+                </div>
+            </div>
+
+            <div id="startScreen" class="game-overlay">
+                <h2>PAC-SNAKE</h2>
+                <p class="press-start-text">Press START to play!</p>
+                <button id="startButton" class="game-button">START GAME</button>
+            </div>
+
+            <div id="pausedScreen" class="game-overlay hidden">
+                <h2>PAUSED</h2>
+                <button id="resumeButton" class="game-button">RESUME</button>
+            </div>
+
+            <div id="gameOverScreen" class="game-overlay hidden">
+                <h2>GAME OVER</h2>
+                <p>FINAL SCORE: <span id="finalScore">0</span></p>
+                <button id="restartButton" class="game-button">RESTART</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
