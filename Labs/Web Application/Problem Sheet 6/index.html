@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stationery Shop Invoice Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+            color: black;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border: 2px solid black;
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid black;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .invoice-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid black;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-width: 3px;
+        }
+
+        .items-section {
+            margin-bottom: 30px;
+        }
+
+        .items-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .items-header h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .btn-remove {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+        }
+
+        .btn-remove:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid black;
+            margin-bottom: 20px;
+        }
+
+        .items-table th,
+        .items-table td {
+            border: 1px solid black;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .items-table th {
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .items-table td {
+            font-size: 15px;
+        }
+
+        .items-table select,
+        .items-table input {
+            width: 100%;
+            border: 1px solid black;
+            padding: 8px;
+            background-color: white;
+            color: black;
+            font-size: 14px;
+        }
+
+        .items-table input[readonly] {
+            background-color: #f5f5f5;
+        }
+
+        .totals-section {
+            border-top: 2px solid black;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .totals-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .totals-left {
+            display: flex;
+            gap: 15px;
+        }
+
+        .totals-right {
+            border: 2px solid black;
+            padding: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .total-row.grand-total {
+            border-top: 2px solid black;
+            padding-top: 10px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .print-section {
+            text-align: center;
+            margin-top: 30px;
+            border-top: 2px solid black;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .invoice-details {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .totals-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .totals-left {
+                justify-content: center;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .items-table {
+                font-size: 12px;
+            }
+            
+            .items-table th,
+            .items-table td {
+                padding: 8px;
+            }
+        }
+
+        @media print {
+            .btn, .print-section {
+                display: none;
+            }
+            
+            body {
+                padding: 0;
+            }
+            
+            .container {
+                border: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>STATIONERY SHOP</h1>
+            <p>Invoice Calculator</p>
+        </div>
+
+        <div class="invoice-details">
+            <div class="form-group">
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" placeholder="Enter customer name">
+                <div class="error-message" id="customerNameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="invoiceNumber">Invoice Number:</label>
+                <input type="text" id="invoiceNumber" readonly>
+            </div>
+        </div>
+
+        <div class="items-section">
+            <div class="items-header">
+                <h2>Items Purchased</h2>
+                <button class="btn" onclick="addNewRow()">Add Item</button>
+            </div>
+
+            <table class="items-table" id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Price per Unit (₹)</th>
+                        <th>Subtotal (₹)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="totals-section">
+            <div class="totals-grid">
+                <div class="totals-left">
+                    <button class="btn" onclick="resetInvoice()">Reset Invoice</button>
+                    <button class="btn" onclick="validateAndGenerate()">Generate Invoice</button>
+                </div>
+                <div class="totals-right">
+                    <div class="total-row">
+                        <span>Grand Total:</span>
+                        <span>₹<span id="grandTotal">0.00</span></span>
+                    </div>
+                    <div class="total-row">
+                        <span>GST (18%):</span>
+                        <span>₹<span id="gstAmount">0.00</span></span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>Final Amount:</span>
+                        <span>₹<span id="finalAmount">0.00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-section">
+            <button class="btn" onclick="printInvoice()">Print Invoice</button>
+            <button class="btn" onclick="exportToPDF()">Export as PDF</button>
+        </div>
+    </div>
+
+    <script>
+        // Pre-defined stationery items with prices
+        const stationeryItems = {
+            'Pen (Blue)': 10.00,
+            'Pen (Black)': 10.00,
+            'Pen (Red)': 12.00,
+            'Pencil (HB)': 5.00,
+            'Pencil (2B)': 6.00,
+            'Notebook (A4)': 45.00,
+            'Notebook (A5)': 35.00,
+            'Eraser': 8.00,
+            'Ruler (15cm)': 15.00,
+            'Ruler (30cm)': 25.00,
+            'Marker (Black)': 20.00,
+            'Marker (Blue)': 20.00,
+            'Marker (Red)': 20.00,
+            'Highlighter (Yellow)': 30.00,
+            'Highlighter (Green)': 30.00,
+            'Stapler': 120.00,
+            'Paper Clips (Box)': 25.00,
+            'Sticky Notes': 40.00,
+            'File Folder': 15.00,
+            'Envelope (Pack of 10)': 30.00
+        };
+
+        let invoiceCounter = 1;
+        let rowCounter = 0;
+
+        // Initialize the invoice
+        function initializeInvoice() {
+            document.getElementById('invoiceNumber').value = generateInvoiceNumber();
+            addNewRow();
+        }
+
+        // Generate unique invoice number
+        function generateInvoiceNumber() {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `INV-${year}${month}${day}-${String(invoiceCounter++).padStart(3, '0')}`;
+        }
+
+        // Add new item row
+        function addNewRow() {
+            const tableBody = document.getElementById('itemsTableBody');
+            const row = document.createElement('tr');
+            row.id = `row-${++rowCounter}`;
+
+            // Create item dropdown options
+            let itemOptions = '<option value="">Select item...</option>';
+            for (const [item, price] of Object.entries(stationeryItems)) {
+                itemOptions += `<option value="${item}" data-price="${price}">${item}</option>`;
+            }
+
+            row.innerHTML = `
+                <td>
+                    <select onchange="updatePrice(this, ${rowCounter})" id="item-${rowCounter}">
+                        ${itemOptions}
+                    </select>
+                </td>
+                <td>
+                    <input type="number" id="quantity-${rowCounter}" min="1" step="1" 
+                           oninput="calculateSubtotal(${rowCounter})" placeholder="0">
+                </td>
+                <td>
+                    <input type="number" id="price-${rowCounter}" step="0.01" readonly>
+                </td>
+                <td>
+                    <input type="number" id="subtotal-${rowCounter}" step="0.01" readonly>
+                </td>
+                <td>
+                    <button class="btn btn-small btn-remove" onclick="removeRow(${rowCounter})">Remove</button>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        }
+
+        // Update price when item is selected
+        function updatePrice(selectElement, rowId) {
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const price = selectedOption.getAttribute('data-price') || 0;
+            document.getElementById(`price-${rowId}`).value = price;
+            calculateSubtotal(rowId);
+        }
+
+        // Calculate subtotal for a row
+        function calculateSubtotal(rowId) {
+            const quantity = parseFloat(document.getElementById(`quantity-${rowId}`).value) || 0;
+            const price = parseFloat(document.getElementById(`price-${rowId}`).value) || 0;
+            const subtotal = quantity * price;
+            
+            document.getElementById(`subtotal-${rowId}`).value = subtotal.toFixed(2);
+            calculateTotals();
+        }
+
+        // Calculate grand total, GST, and final amount
+        function calculateTotals() {
+            let grandTotal = 0;
+            const tableBody = document.getElementById('itemsTableBody');
+            const rows = tableBody.querySelectorAll('tr');
+
+            rows.forEach(row => {
+                const subtotalInput = row.querySelector('input[id^="subtotal-"]');
+                if (subtotalInput) {
+                    grandTotal += parseFloat(subtotalInput.value) || 0;
+                }
+            });
+
+            const gst = grandTotal * 0.18;
+            const finalAmount = grandTotal + gst;
+
+            document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
+            document.getElementById('gstAmount').textContent = gst.toFixed(2);
+            document.getElementById('finalAmount').textContent = finalAmount.toFixed(2);
+        }
+
+        // Remove a row
+        function removeRow(rowId) {
+            const row = document.getElementById(`row-${rowId}`);
+            if (row) {
+                row.remove();
+                calculateTotals();
+            }
+        }
+
+        // Validate form and generate invoice
+        function validateAndGenerate() {
+            clearErrors();
+            let hasErrors = false;
+
+            // Validate customer name
+            const customerName = document.getElementById('customerName').value.trim();
+            if (!customerName) {
+                showError('customerNameError', 'Customer name is required');
+                hasErrors = true;
+            }
+
+            // Validate items
+            const tableBody = document.getElementById('itemsTableBody');
+            const rows = tableBody.querySelectorAll('tr');
+            
+            if (rows.length === 0) {
+                alert('Please add at least one item to the invoice');
+                return;
+            }
+
+            let hasValidItems = false;
+            rows.forEach(row => {
+                const itemSelect = row.querySelector('select[id^="item-"]');
+                const quantityInput = row.querySelector('input[id^="quantity-"]');
+                
+                if (itemSelect && quantityInput) {
+                    const item = itemSelect.value;
+                    const quantity = parseFloat(quantityInput.value) || 0;
+                    
+                    if (item && quantity > 0) {
+                        hasValidItems = true;
+                    } else if (item || quantity > 0) {
+                        hasErrors = true;
+                    }
+                }
+            });
+
+            if (!hasValidItems) {
+                alert('Please add at least one valid item with quantity');
+                return;
+            }
+
+            if (!hasErrors) {
+                alert('Invoice generated successfully!');
+            }
+        }
+
+        // Reset the entire invoice
+        function resetInvoice() {
+            if (confirm('Are you sure you want to reset the entire invoice?')) {
+                document.getElementById('customerName').value = '';
+                document.getElementById('invoiceNumber').value = generateInvoiceNumber();
+                document.getElementById('itemsTableBody').innerHTML = '';
+                rowCounter = 0;
+                calculateTotals();
+                clearErrors();
+                addNewRow();
+            }
+        }
+
+        // Print invoice
+        function printInvoice() {
+            if (!validateInvoiceForPrint()) {
+                return;
+            }
+            window.print();
+        }
+
+        // Export to PDF (simulation)
+        function exportToPDF() {
+            if (!validateInvoiceForPrint()) {
+                return;
+            }
+            alert('PDF export functionality would require a backend service or client-side PDF library. For now, please use the Print option and save as PDF.');
+        }
+
+        // Validate invoice before printing
+        function validateInvoiceForPrint() {
+            const customerName = document.getElementById('customerName').value.trim();
+            if (!customerName) {
+                alert('Please enter customer name before printing');
+                return false;
+            }
+
+            const tableBody = document.getElementById('itemsTableBody');
+            const rows = tableBody.querySelectorAll('tr');
+            let hasValidItems = false;
+
+            rows.forEach(row => {
+                const itemSelect = row.querySelector('select[id^="item-"]');
+                const quantityInput = row.querySelector('input[id^="quantity-"]');
+                
+                if (itemSelect && quantityInput) {
+                    const item = itemSelect.value;
+                    const quantity = parseFloat(quantityInput.value) || 0;
+                    
+                    if (item && quantity > 0) {
+                        hasValidItems = true;
+                    }
+                }
+            });
+
+            if (!hasValidItems) {
+                alert('Please add at least one valid item before printing');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Show error message
+        function showError(elementId, message) {
+            document.getElementById(elementId).textContent = message;
+        }
+
+        // Clear all error messages
+        function clearErrors() {
+            document.getElementById('customerNameError').textContent = '';
+        }
+
+        // Initialize invoice on page load
+        window.onload = function() {
+            initializeInvoice();
+        };
+    </script>
+</body>
+</html>

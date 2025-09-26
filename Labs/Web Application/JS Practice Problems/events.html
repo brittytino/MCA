@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton" onmouseover="showMessage()" onmouseout="hideMessage()">
+  Hover over me!
+</button>
+<p id="message" style="display: none;">Mouse is over the button!</p>
+<script>
+function showMessage() {
+  document.getElementById("message").style.display = "block";
+}
+
+function hideMessage() {
+  document.getElementById("message").style.display = "none";
+}
+</script>
+</body>
+</html>
