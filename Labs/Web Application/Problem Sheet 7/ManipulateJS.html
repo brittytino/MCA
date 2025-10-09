@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulation JavaScript</title>
+</head>
+<body>
+    <script>
+        let myQueue = [];
+
+let choice;
+do {
+  choice = prompt(
+    "Queue Menu:\n" +
+    "1: Insert elements at end of queue\n" +
+    "2: Remove element from front of queue\n" +
+    "3: Print total number of elements\n" +
+    "4: Sort queue and store in new array\n" +
+    "5: Remove n elements from ith position, add 2 new items\n" +
+    "6: Divide queue into two using slice\n" +
+    "7: Join all elements as single string\n" +
+    "Any other key: Convert all elements to strings using map"
+  );
+
+  switch (choice) {
+    case '1':
+      let elem = prompt("Enter element (number or string) to enqueue:");
+      myQueue.push(elem);
+      console.log("Enqueued:", elem);
+      break;
+
+    case '2':
+      if (myQueue.length === 0) {
+        console.log("Queue is empty!");
+      } else {
+        let removed = myQueue.shift();
+        console.log("Dequeued:", removed);
+      }
+      break;
+
+    case '3':
+      console.log("Total elements in queue:", myQueue.length);
+      break;
+
+    case '4':
+      let sortedQueue = [...myQueue].sort();
+      console.log("Sorted queue:", sortedQueue);
+      break;
+
+    case '5':
+      if (myQueue.length === 0) {
+        console.log("Queue is empty!");
+        break;
+      }
+      let i = parseInt(prompt("Enter starting index (i):"));
+      let n = parseInt(prompt("Enter number of elements (n) to remove:"));
+      let newItem1 = prompt("Enter first new item to add:");
+      let newItem2 = prompt("Enter second new item to add:");
+
+      if (isNaN(i) || isNaN(n) || i < 0 || i >= myQueue.length) {
+        console.log("Invalid index or number!");
+        break;
+      }
+
+      let removed = myQueue.splice(i, n, newItem1, newItem2);
+      console.log("Removed elements:", removed);
+      console.log("New queue:", myQueue);
+      break;
+
+    case '6':
+      if (myQueue.length === 0) {
+        console.log("Queue is empty!");
+        break;
+      }
+      let mid = Math.floor(myQueue.length / 2);
+      let firstQueue = myQueue.slice(0, mid);
+      let secondQueue = myQueue.slice(mid);
+      console.log("First Queue:", firstQueue);
+      console.log("Second Queue:", secondQueue);
+      break;
+
+    case '7':
+      let joined = myQueue.join('');
+      console.log("Joined queue elements as string:", joined);
+      break;
+
+    default:
+      myQueue = myQueue.map(String);
+      console.log("Converted all elements to strings:", myQueue);
+      break;
+  }
+} while (confirm("Continue queue operations?"));
+
+console.log("Final Queue:", myQueue);
+
+    </script>
+</body>
+</html>

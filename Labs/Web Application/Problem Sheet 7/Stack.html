@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Stack Manipulation</title>
+</head>
+<body>
+  <script>
+    let myStack = [];
+    let choice;
+
+    function isNumber(value) {
+      return !isNaN(value) && value.trim() !== '';
+    }
+
+    do {
+      choice = prompt(
+        "Menu:\n" +
+        "1: Push element to stack\n" +
+        "2: Pop element from stack\n" +
+        "3: Find presence of element and index\n" +
+        "4: Print number of elements\n" +
+        "5: Count integers and floats\n" +
+        "6: Fix decimal places of all floats\n" +
+        "Any other key: Reduce stack to sum"
+      );
+
+      switch (choice) {
+        case '1':
+          let elem = prompt("Enter a number to push onto the stack:");
+          if (isNumber(elem)) {
+            myStack.push(Number(elem));
+            document.write("Pushed: " + elem + "<br>");
+          } else {
+            document.write("Only numbers are allowed!<br>");
+          }
+          break;
+
+        case '2':
+          if (myStack.length === 0) {
+            document.write("Stack is empty!<br>");
+          } else {
+            let popped = myStack.pop();
+            document.write("Popped: " + popped + "<br>");
+          }
+          break;
+
+        case '3':
+          let search = prompt("Enter element to find:");
+          let found = myStack.find(el => el == search);
+          let index = myStack.findIndex(el => el == search);
+          if (found !== undefined) {
+            document.write("Element found: " + found + " at index: " + index + "<br>");
+          } else {
+            document.write("Element not found in stack.<br>");
+          }
+          break;
+
+        case '4':
+          document.write("Number of elements in stack: " + myStack.length + "<br>");
+          break;
+
+        case '5':
+          let intCount = 0, floatCount = 0;
+          myStack.forEach(el => {
+            if (Number.isInteger(el)) intCount++;
+            else if (typeof el === 'number') floatCount++;
+          });
+          document.write("Total integers: " + intCount + ", Total floats: " + floatCount + "<br>");
+          break;
+
+        case '6':
+          let n = prompt("Enter number of decimal places (n):");
+          if (!isNaN(n) && n.trim() !== '') {
+            n = parseInt(n);
+            myStack = myStack.map(el => {
+              if (!Number.isInteger(el)) {
+                return Number(parseFloat(el).toFixed(n));
+              }
+              return el;
+            });
+            document.write("Fixed decimal places to " + n + " for floats.<br>");
+          } else {
+            document.write("Invalid input for decimal places.<br>");
+          }
+          break;
+
+        default:
+          if (myStack.length > 0) {
+            let sum = myStack.reduce((acc, val) => acc + val, 0);
+            document.write("Sum of stack values: " + sum + "<br>");
+          } else {
+            document.write("Stack is empty. Nothing to reduce.<br>");
+          }
+          break;
+      }
+
+    } while (confirm("Do you want to continue?"));
+
+    document.write("<br>Final Stack: [" + myStack.join(", ") + "]");
+  </script>
+</body>
+</html>
