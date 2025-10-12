@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="employeeList"></ul>
+    <h1 id="cv">tino</h1>
+<button onclick="addEmployee('Alice')">Add Alice</button>
+<button onclick="addEmployee('Bob')">Add Bob</button>
+
+<script>
+function addEmployee(name) {
+  const li = document.createElement('li'); // Make new <li>
+  li.innerText = name; // Set the text
+  document.getElementById('cv').appendChild(li); // Add it to the <ul>
+}
+</script>
+</body>
+</html>

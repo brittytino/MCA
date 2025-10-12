@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Travel Expense Report</title>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  th {
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h2>Dynamic Table Generation</h2>
+<button onclick="createTable()">expenseReport</button>
+
+<script>
+function createTable() {
+  // Create table
+  var table = document.createElement("table");
+
+  // --- Title Row ---
+  var titleRow = table.insertRow();
+  var titleCell = document.createElement("th");
+  titleCell.colSpan = 4;
+  titleCell.innerHTML = "Travel Expense Report";
+  titleRow.appendChild(titleCell);
+
+  // --- Header Row ---
+  var headerRow = table.insertRow();
+  headerRow.innerHTML = "<th></th><th>Meals</th><th>Hotels</th><th>Transport / Subtotals</th>";
+
+  // --- San Jose Data ---
+  var r1 = table.insertRow();
+  r1.innerHTML = "<td><b>San Jose</b></td><td></td><td></td><td></td>";
+
+  var r2 = table.insertRow();
+  r2.innerHTML = "<td>25-Aug-97</td><td>37.74</td><td>112.00</td><td>45.00</td>";
+
+  var r3 = table.insertRow();
+  r3.innerHTML = "<td>26-Aug-97</td><td>27.28</td><td>112.00</td><td>45.00</td>";
+
+  var r4 = table.insertRow();
+  r4.innerHTML = "<td><b>subtotals</b></td><td>65.02</td><td>224.00</td><td>90.00</td>";
+
+  // --- Seattle Data ---
+  var r5 = table.insertRow();
+  r5.innerHTML = "<td><b>Seattle</b></td><td></td><td></td><td></td>";
+
+  var r6 = table.insertRow();
+  r6.innerHTML = "<td>27-Aug-97</td><td>96.25</td><td>109.00</td><td>36.00</td>";
+
+  var r7 = table.insertRow();
+  r7.innerHTML = "<td>28-Aug-97</td><td>35.00</td><td>109.00</td><td>36.00</td>";
+
+  var r8 = table.insertRow();
+  r8.innerHTML = "<td><b>subtotals</b></td><td>131.25</td><td>218.00</td><td>72.00</td>";
+
+  // --- Totals Row ---
+  var r9 = table.insertRow();
+  r9.innerHTML = "<td><b>Totals</b></td><td>196.27</td><td>442.00</td><td>162.00</td>";
+
+  var r10 = table.insertRow();
+  r10.innerHTML = "<td colspan='3' align='right'><b>Grand Total:</b></td><td><b>800.27</b></td>";
+
+  // Add table to page
+  document.body.appendChild(table);
+}
+</script>
+
+</body>
+</html>
