@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Survey Form</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <h2>University Student Survey Form</h2>
+
+  <form id="surveyForm" action="success.html" method="get">
+    <!-- 1. Name -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" onblur="validateName()">
+    <span id="nameError" class="error"></span><br><br>
+
+    <!-- 2. Email -->
+    <label for="email">Email:</label>
+    <input type="text" id="email" onblur="validateEmail()">
+    <span id="emailError" class="error"></span><br><br>
+
+    <!-- 3. Password -->
+    <label for="password">Password:</label>
+    <input type="password" id="password" onblur="validatePassword()">
+    <span id="passwordError" class="error"></span><br><br>
+
+    <!-- 4. Mobile -->
+    <label for="mobile">Mobile Number:</label>
+    <input type="text" id="mobile" onblur="validateMobile()">
+    <span id="mobileError" class="error"></span><br><br>
+
+    <!-- 5. DOB -->
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" onblur="validateDOB()">
+    <span id="dobError" class="error"></span><br><br>
+
+    <!-- 6. Rating -->
+    <label>Rating:</label><br>
+    <input type="radio" name="rating" value="1"> 1 ⭐
+    <input type="radio" name="rating" value="2"> 2 ⭐
+    <input type="radio" name="rating" value="3"> 3 ⭐
+    <input type="radio" name="rating" value="4"> 4 ⭐
+    <input type="radio" name="rating" value="5"> 5 ⭐
+    <br><br>
+
+    <!-- 7. Interests -->
+    <label>Interests:</label><br>
+    <input type="checkbox" name="interest" value="Sports"> Sports
+    <input type="checkbox" name="interest" value="Music"> Music
+    <input type="checkbox" name="interest" value="Coding"> Coding
+    <input type="checkbox" name="interest" value="Reading"> Reading
+    <input type="checkbox" name="interest" value="Travel"> Travel
+    <br><br>
+
+    <!-- Buttons -->
+    <button type="button" onclick="displayData()">Display</button>
+    <button type="reset">Reset</button>
+    <button type="submit" onclick="return validateForm()">Submit</button>
+  </form>
+
+</body>
+</html>
