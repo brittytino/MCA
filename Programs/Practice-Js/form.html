@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body {
+      padding: 0;
+      background: lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: white;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: darkblue;
+    }
+  </style>
+</head>
+
+<body>
+    <!-- <div id="userForm" class="container">
+        <form method="get">
+            <label id="name">Name:<input type="text" required></label>
+            <label id="rollno">RollNo: <input type="number" required></label>
+            <button>Submit</button>
+        </form>
+    </div> -->
+    <div class="container">
+        <form id="userForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="rollno">Roll No:</label>
+            <input type="number" id="rollno" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.getElementById("userForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let name = document.getElementById("name").value;
+        let rollno = document.getElementById("rollno").value;
+        localStorage.setItem("name", name);
+        localStorage.setItem("rollno", rollno);
+
+        window.location.href = "sx.html";
+
+    });
+
+
+
+</script>
+
+</html>
