@@ -1,32 +1,31 @@
 #include <stdio.h>
 
 int main() {
-    int n, i;
-    printf("Enter the size of the array (N): ");
+    int n;
+    printf("Enter N: ");
     scanf("%d", &n);
 
     int arr[n];
-    printf("Enter the elements (1 to %d with one duplicate and one missing):\n", n);
-    for (i = 0; i < n; i++)
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++)
         scanf("%d", &arr[i]);
 
-    int sum = 0, sumSq = 0;
-
-    for (i = 0; i < n; i++) {
-        sum += arr[i];
-        sumSq += arr[i] * arr[i];
+    long long sum_actual = 0, sumSq_actual = 0;
+    for (int i = 0; i < n; i++) {
+        sum_actual += arr[i];
+        sumSq_actual += (long long)arr[i] * arr[i];
     }
 
-    int expectedSum = n * (n + 1) / 2;
-    int expectedSqSum = n * (n + 1) * (2 * n + 1) / 6;
+    long long sum_expected = (long long)n * (n + 1) / 2;
+    long long sumSq_expected = (long long)n * (n + 1) * (2 * n + 1) / 6;
 
-    int diff = sum - expectedSum;               
-    int diffSq = sumSq - expectedSqSum;         
+    long long A = sum_actual - sum_expected;
+    long long B = sumSq_actual - sumSq_expected;
 
-    int sumDupMiss = diffSq / diff;            
+    long long y_plus_x = B / A;
+    long long duplicate = (A + y_plus_x) / 2;
+    long long missing = duplicate - A;
 
-    int duplicate = (diff + sumDupMiss) / 2;
-    printf("The duplicated number is: %d\n", duplicate);
-
+    printf("Duplicate = %lld\nMissing = %lld\n", duplicate, missing);
     return 0;
 }
