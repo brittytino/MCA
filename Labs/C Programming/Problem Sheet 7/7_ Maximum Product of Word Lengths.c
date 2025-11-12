@@ -6,15 +6,14 @@ int main() {
     int n;
     printf("Enter number of words: ");
     if (scanf("%d", &n) != 1) return 0;
-    getchar(); // consume newline after number
+    getchar(); 
 
     if (n <= 0) {
         printf("0\n");
         return 0;
     }
 
-    // allocate arrays
-    char words[n][1005]; // each word up to 1000 (safe for constraints)
+    char words[n][1005]; 
     int len[n];
     unsigned int mask[n];
 
