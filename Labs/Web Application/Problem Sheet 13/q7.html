@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q7</title></head>
+<body>
+  <div id="out"></div>
+
+  <script>
+    let n = 1;
+    const out = document.getElementById('out');
+    const timer = setInterval(() => {
+      out.textContent += n + (n < 10 ? ", " : "");
+      if (n === 10) {
+        clearInterval(timer);
+      }
+      n++;
+    }, 1000);
+  </script>
+</body>
+</html>

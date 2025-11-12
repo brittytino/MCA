@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q9</title></head>
+<body>
+  <button id="stopBtn">Stop Color Change</button>
+
+  <script>
+    const colors = ['#ffcccc', '#ccffcc', '#ccccff', '#fff0b3', '#ffd9e6'];
+    let idx = 0;
+
+    const intervalId = setInterval(() => {
+      document.body.style.backgroundColor = colors[idx % colors.length];
+      idx++;
+    }, 1000);
+
+    document.getElementById('stopBtn').addEventListener('click', () => {
+      clearInterval(intervalId);
+      // optional: indicate stopped
+      document.getElementById('stopBtn').textContent = 'Stopped';
+      document.getElementById('stopBtn').disabled = true;
+    });
+  </script>
+</body>
+</html>

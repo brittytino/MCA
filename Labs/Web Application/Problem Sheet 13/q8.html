@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Q8 Clock</title>
+  <style>
+    body { font-family: monospace; font-size: 2rem; }
+  </style>
+</head>
+<body>
+  <div id="clock">--:--:--</div>
+
+  <script>
+    function pad(v){ return String(v).padStart(2,'0'); }
+
+    function updateClock(){
+      const now = new Date();
+      const hh = pad(now.getHours());
+      const mm = pad(now.getMinutes());
+      const ss = pad(now.getSeconds());
+      document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+    }
+
+    updateClock();           // show immediately
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
