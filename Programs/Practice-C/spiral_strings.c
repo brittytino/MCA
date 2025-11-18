@@ -1,57 +1,49 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    char arr[3][3][50];  // 3x3 matrix of strings
-    int i, j;
 
-    printf("Enter 9 words (to form a 3x3 matrix):\n");
+    // Step 1: Words in spiral order (1 to 9)
+    char words[9][20] = {
+        "Twinkle,", "twinkle", "little",
+        "star,", "how", "I",
+        "wonder", "what", "you"
+    };
 
-    // Input words
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            scanf("%49s", arr[i][j]);
-        }
-    }
+    // Step 2: Create empty 3x3 matrix of strings
+    char mat[3][3][20];
 
-    // Display 3x3 matrix
-    printf("\n--- 3x3 String Matrix ---\n");
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
-            printf("%-10s ", arr[i][j]);  // formatted spacing
+    // Step 3: Fill matrix in SPIRAL manually (naive method)
+
+    int k = 0;  // index for words[]
+
+    // Top row (left → right)
+    strcpy(mat[0][0], words[k++]);
+    strcpy(mat[0][1], words[k++]);
+    strcpy(mat[0][2], words[k++]);
+
+    // Right column (top → bottom)
+    strcpy(mat[1][2], words[k++]);
+    strcpy(mat[2][2], words[k++]);
+
+    // Bottom row (right → left)
+    strcpy(mat[2][1], words[k++]);
+    strcpy(mat[2][0], words[k++]);
+
+    // Left column (bottom → top)
+    strcpy(mat[1][0], words[k++]);
+
+    // Center element
+    strcpy(mat[1][1], words[k++]);
+
+    // Step 4: Print the matrix normally
+    printf("Spiral Matrix:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%-10s ", mat[i][j]);
         }
         printf("\n");
     }
 
-    // Spiral order print
-    printf("\n--- Spiral Order ---\n");
-    int top = 0, bottom = 2, left = 0, right = 2;
-
-    while (top <= bottom && left <= right) {
-        // left to right
-        for (i = left; i <= right; i++)
-            printf("%s ", arr[top][i]);
-        top++;
-
-        // top to bottom
-        for (i = top; i <= bottom; i++)
-            printf("%s ", arr[i][right]);
-        right--;
-
-        // right to left
-        if (top <= bottom) {
-            for (i = right; i >= left; i--)
-                printf("%s ", arr[bottom][i]);
-            bottom--;
-        }
-
-        // bottom to top
-        if (left <= right) {
-            for (i = bottom; i >= top; i--)
-                printf("%s ", arr[i][left]);
-            left++;
-        }
-    }
-
-    printf("\n");
     return 0;
 }
