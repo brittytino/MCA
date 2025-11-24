@@ -1,0 +1,39 @@
+# Practice Programs - Because nobody needs to see my debugging disasters
+/Practice Programs/
+Practice Programs/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.env
+
+# C/C++
+*.o
+*.exe
+*.out
+a.out
+
+# Java
+*.class
+*.jar
+*.war
+
+# Temporary files
+*.tmp
+*.bak
+*.log
