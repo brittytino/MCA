@@ -1,0 +1,33 @@
+<!-- views/updateStudent.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Student Skills</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <h1>Update Student Skills</h1>
+
+  <form action="/updateStudent" method="POST">
+
+    <label for="rollnumber">Enter Roll Number:</label>
+    <input type="number" name="rollnumber" required>
+
+    <br><br>
+
+    <label for="skills">New Skills (comma separated):</label>
+    <input type="text" name="skills" placeholder="E.g: dance, chess, singing" required>
+
+    <br><br>
+
+    <button type="submit">Update Skills</button>
+
+  </form>
+
+  <br>
+  <a href="/">Back Home</a>
+
+</body>
+</html>

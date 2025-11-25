@@ -1,0 +1,24 @@
+<!-- views/displayStudent.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Details</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <h1>Student Details</h1>
+
+  <div>
+    <p><strong>Roll Number:</strong> <%= student.rollnumber %></p>
+    <p><strong>Name:</strong> <%= student.name %></p>
+    <p><strong>Guardian Phone:</strong> <%= student.guardianPhone || "Day Scholar (No guardian number)" %></p>
+    <p><strong>Skills:</strong> <%= student.skills.join(", ") %></p>
+  </div>
+
+  <br>
+  <a href="/">Back Home</a>
+
+</body>
+</html>

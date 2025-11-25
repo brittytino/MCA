@@ -1,0 +1,17 @@
+<!-- views/displaySkills.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Students with Skill</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Students with Skill</h1>
+  <ul>
+    <% students.forEach(student => { %>
+      <li><%= student.name %> (Roll Number: <%= student.rollnumber %>)</li>
+    <% }) %>
+  </ul>
+</body>
+</html>

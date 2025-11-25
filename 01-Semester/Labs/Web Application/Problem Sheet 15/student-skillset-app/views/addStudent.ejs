@@ -1,0 +1,34 @@
+<!-- views/addStudent.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Student</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Add Student</h1>
+  <form action="/addStudent" method="POST">
+    <label for="rollnumber">Roll Number:</label>
+    <input type="number" name="rollnumber" required><br>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" required><br>
+
+    <label for="guardianPhone">Guardian's Phone Number:</label>
+    <input type="text" name="guardianPhone"><br>
+
+    <label for="skills">Skills:</label><br>
+    <input type="checkbox" name="skills" value="dance"> Dance<br>
+    <input type="checkbox" name="skills" value="drawing"> Drawing<br>
+    <input type="checkbox" name="skills" value="painting"> Painting<br>
+    <input type="checkbox" name="skills" value="singing"> Singing<br>
+    <input type="checkbox" name="skills" value="chess"> Chess<br>
+    <input type="checkbox" name="skills" value="cricket"> Cricket<br>
+    <input type="checkbox" name="skills" value="soccer"> Soccer<br>
+    <input type="checkbox" name="skills" value="orchestra"> Orchestra<br>
+
+    <button type="submit">Add Student</button>
+  </form>
+</body>
+</html>

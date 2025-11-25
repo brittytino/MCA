@@ -2,6 +2,10 @@
 /Practice Programs/
 Practice Programs/
 
+#node_modules
+/01-Semester/Labs/Web Application/Problem Sheet 15/student-skillset-app/node_modules
+/01-Semester/Labs/Web Application/Problem Sheet 16/file-handling-app/node_modules
+
 # IDE and Editor files
 .vscode/
 .idea/
